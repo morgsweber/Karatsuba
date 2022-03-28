@@ -10,22 +10,21 @@ public class KaratsubaTriplo {
         String shift2 = "0";
 
         // Chama o método recursivo
-        //System.out.println(karaTriploRec(a, b, shift1, shift2));
+        // System.out.println(karaTriploRec(a, b, shift1, shift2));
         karaTriploRec(a, b, shift1, shift2, "0");
     }
 
-    private static String karaTriploRec(String a, String b, String shift1, String shift2, String soma) {
+    private static String karaTriploRec(String a, String b, String shift1, String shift2, String auxSum) {
         System.out.println("Entrada: " + a + " " + b + " shifts: " + shift1 + " " + shift2);
         if (a.length() == 1 && b.length() == 1) {
             int auxA = Integer.parseInt(a);
             int auxB = Integer.parseInt(b);
             String result = Integer.toString(auxA * auxB);
-            for(int i = 0; i < (Integer.parseInt(shift1)+Integer.parseInt(shift2)); i++){
+            for (int i = 0; i < (Integer.parseInt(shift1) + Integer.parseInt(shift2)); i++) {
                 result += "0";
             }
 
-            System.out.println(result);
-            resultString += Integer.toString(auxA * auxB) + " x 10^" + shift1 + " x 10^" + shift2 + " \n";
+            System.out.println("Result: " +result);
             return result;
         }
 
@@ -61,7 +60,7 @@ public class KaratsubaTriplo {
         // Shifts
         int sa1 = a.length() - a1.length();
         int sa2 = a.length() - (2 * a2.length());
-        int sa3 = a.length() - (2 * a2.length() + b3.length());
+        int sa3 = a.length() - (2 * a2.length() + a3.length());
 
         System.out.println("shift a: " + sa1 + " " + sa2 + " " + sa3);
 
@@ -70,66 +69,34 @@ public class KaratsubaTriplo {
         int sb3 = b.length() - (2 * b1.length() + b3.length());
 
         System.out.println("shift b: " + sb1 + " " + sb2 + " " + sb3);
+        String s1 = karaTriploRec(a1, b1, Integer.toString(sa1), Integer.toString(sb1), "");
+        String s2 = karaTriploRec(a1, b2, Integer.toString(sa1), Integer.toString(sb2), "0");
 
-        // System.out.println("Novos valores: ");
-        // System.out.println("a1: " + a1 + " " + sa1);
-        // System.out.println("a2: " + a2 + " " + sa2);
-        // System.out.println("a3: " + a3 + " " + sa3);
-
-        // System.out.println("b1: " + b1 + " " + sb1);
-        // System.out.println("b2: " + b2 + " " + sb2);
-        // System.out.println("b3: " + b3 + " " + sb3);
-
-        //if (Integer.parseInt(a1) != 0 && Integer.parseInt(b1) != 0) {
-            String A = karaTriploRec(a1, b1, Integer.toString(sa1), Integer.toString(sb1));
-            String B = karaTriploRec(a1, b2, Integer.toString(sa1), Integer.toString(sb2));
-            String C = karaTriploRec(a1, b3, Integer.toString(sa1), Integer.toString(sb3));
-            // String sum1 = sum(karaTriploRec(a1, b1, Integer.toString(sa1), Integer.toString(sb1)), karaTriploRec(a1, b2, Integer.toString(sa1), Integer.toString(sb2)));
-            //sum1 = sum(sum1, karaTriploRec(a1, b3, Integer.toString(sa1), Integer.toString(sb3)));
-            System.out.println(sum(C, B));
-            System.out.println(("A:" + A + " B:" + B + " C: " + C));
-        //}
-        //if (Integer.parseInt(a1) != 0 && Integer.parseInt(b2) != 0) {
-            //String resultA1b = karaTriploRec(a1, b2, Integer.toString(sa1), Integer.toString(sb2));
         
-        //if (Integer.parseInt(a1) != 0 && Integer.parseInt(b3) != 0) {
-            //String resultA1c = karaTriploRec(a1, b3, Integer.toString(sa1), Integer.toString(sb3));
+        String s3 = karaTriploRec(a1, b3, Integer.toString(sa1), Integer.toString(sb3), "0");
+        String s4 = karaTriploRec(a2, b1, Integer.toString(sa2), Integer.toString(sb1), "0");
+        String s5 = karaTriploRec(a2, b2, Integer.toString(sa2), Integer.toString(sb2), "0");
+        String s6 = karaTriploRec(a2, b3, Integer.toString(sa2), Integer.toString(sb3), "0");
+        String s7 = karaTriploRec(a3, b1, Integer.toString(sa3), Integer.toString(sb1), "0");
+        String s8 = karaTriploRec(a3, b2, Integer.toString(sa3), Integer.toString(sb2), "0");
+        String s9 = karaTriploRec(a3, b3, Integer.toString(sa3), Integer.toString(sb3), "0");
+
+        System.out.println("s1: " + s1);
+        System.out.println("s2: " + s2);
+        System.out.println("s3: " + s3);
+        System.out.println("s4: " + s4);
+        System.out.println("s5: " + s5);
+        System.out.println("s6: " + s6);
+        System.out.println("s7: " + s7);
+        System.out.println("s8: " + s8);
+        System.out.println("s9: " + s9);
         
-        //if (Integer.parseInt(a2) != 0 && Integer.parseInt(b1) != 0) {
-            String sum2 = sum(karaTriploRec(a2, b1, Integer.toString(sa2), Integer.toString(sb1)), karaTriploRec(a2, b2, Integer.toString(sa2), Integer.toString(sb2)));
-            sum2 = sum(sum2, karaTriploRec(a2, b3, Integer.toString(sa2), Integer.toString(sb3)));
-            //System.out.println(("SUM2:" + sum2));
-            //}
-        //if (Integer.parseInt(a2) != 0 && Integer.parseInt(b2) != 0) {
-            //String resultA2b =karaTriploRec(a2, b2, Integer.toString(sa2), Integer.toString(sb2));
-        //}
-        //if (Integer.parseInt(a2) != 0 && Integer.parseInt(b3) != 0) {
-            //String resultA2c = karaTriploRec(a2, b3, Integer.toString(sa2), Integer.toString(sb3));
-        //}
-        //if (Integer.parseInt(a3) != 0 && Integer.parseInt(b1) != 0) {
-            String sum3 = sum(karaTriploRec(a3, b1, Integer.toString(sa3), Integer.toString(sb1)),karaTriploRec(a3, b2, Integer.toString(sa3), Integer.toString(sb2)));
-            //System.out.println(("SUM3:" + sum3));
-            sum3 = sum(sum3, karaTriploRec(a3, b3, Integer.toString(sa3), Integer.toString(sb3)));
-            
-        //}
-        //if (Integer.parseInt(a3) != 0 && Integer.parseInt(b2) != 0) {
-            //String resultA3b = karaTriploRec(a3, b2, Integer.toString(sa3), Integer.toString(sb2));
-        //}
-        //if (Integer.parseInt(a3) != 0 && Integer.parseInt(b3) != 0) {
-            //String resultA3c = karaTriploRec(a3, b3, Integer.toString(sa3), Integer.toString(sb3));
-        //}
-
-        return "A: "  + " B: " + sum2 + " C: " + sum3;
-    }
-
-    public static void printResult() {
-         //System.out.println(resultString);
-        // System.out.println(resultMult);
+        return "";
     }
 
     static String sum(String v1, String v2) {
 
-        //coloca o valor maior no v2 caso v1 seja maior
+        // coloca o valor maior no v2 caso v1 seja maior
         if (v1.length() > v2.length()) {
             String aux = v1;
             v1 = v2;
@@ -139,7 +106,7 @@ public class KaratsubaTriplo {
         String result = "";
         int size1 = v1.length();
         int size2 = v2.length();
-        
+
         v1 = new StringBuilder(v1).reverse().toString();
         v2 = new StringBuilder(v2).reverse().toString();
 

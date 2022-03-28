@@ -21,7 +21,6 @@ public class App {
         //Cria o objeto e chama os métodos
         KaratsubaTriplo kt = new KaratsubaTriplo();
         kt.karaTriplo(values);
-        kt.printResult();
 
         //System.out.println("SOMA: " + kt.sum("26156251", "38927897912"));
 
