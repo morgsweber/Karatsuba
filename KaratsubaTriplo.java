@@ -7,7 +7,7 @@
 
 public class KaratsubaTriplo {
 
-    public static String karaTriplo(String values) {
+    public String karaTriplo(String values) {
         String a = values.split(" ")[0];
         String b = values.split(" ")[1];
         String shift1 = "0";
